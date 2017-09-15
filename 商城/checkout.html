@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/orderHeader2.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+	</head>
+
+	<body>
+
+		<div id="header-list">
+			<a href="index.html"><i class="homelog"></i>美丽说首页</a>
+			<div id="header-list-right">
+				<a href="login.html" name="login" class="login">登录</a>
+				<a href="register.html" name="register" class="register">注册</a>
+				<a href="#" name="username" class="username">liuzhaohuiemmmmmm</a>
+				<a href="javascript:localStorage.clear();location.reload()" class="logout">退出</a>
+				<a href="cart.html"><i class="cartlog"></i>购物车</a>
+				<a href="order.html"><i class="orderlog"></i>我的订单</a>
+			</div>
+		</div>
+		<script src="js/myajax.js" charset="UTF-8"></script>
+		<script>
+			//判断用户名如果存在, 则显示用户名并显示退出按钮, 否则显示注册和登录
+			if(localStorage.username) {
+				var oUsername = document.querySelector('a[name=username]');
+				var oLogout = document.querySelector('.logout');
+				oUsername.innerText = localStorage.username;
+				oUsername.style.display = 'inline';
+				oLogout.style.display = 'inline';
+			} else {
+				var oRegister = document.querySelector('.register');
+				var oLogin = document.querySelector('.login');
+				oRegister.style.display = 'inline';
+				oLogin.style.display = 'inline';
+			}
+		</script>
+
+		<div id="all-logo">
+			<div class="logo-left"></div>
+			<div class="logo-right">
+				<div>
+					<div class="shuzi" style="background: red;">1</div>
+					<div id="chang1"></div>
+					<p style="margin-left: -6px;">购物车</p>
+				</div>
+				<div>
+					<div id="chang2"></div>
+					<div class="shuzi" style="background: red;">2</div>
+					<div id="chang3"></div>
+					<p style="margin-left: -10px;">选择地址</p>
+				</div>
+				<div>
+					<div id="chang4" style="background: red;"></div>
+					<div class="shuzi" style="background: red;">3</div>
+					<div id="chang5" style="background: red;"></div>
+					<p style="margin-left: -17px;">确认并支付</p>
+				</div>
+				<div>
+					<div id="chang6"></div>
+					<div class="shuzi" style="margin-right: 0;">4</div>
+					<p>完成</p>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<ul id="check"></ul>
+		</div>
+		<script src="js/myajax.js" charset="UTF-8"></script>
+		<script>
+			var oCheck = document.querySelector("#check");
+
+			function showMeTheMoney() {
+				myajax.get('http://h6.duchengjiu.top/shop/api_order.php', {token:'6c9c755005b7cfc9d0a14466fea9c5e5'}, function(error, responseText) {
+					var json = JSON.parse(responseText);
+					var data = json.data;
+					console.log(data);
+					console.log(json)
+					for(i = 0; i < data.length; i++) {
+						var obj = data[i];
+						oCheck.innerHTML +=
+							`<li>
+						<div>收货人:${obj.consignee},手机:${obj.mobile},地址:${obj.address}</div>
+						
+					</li>`
+					}
+				})
+			}
+			showMeTheMoney()
+		</script>
+	</body>
+
+</html>

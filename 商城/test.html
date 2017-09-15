@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/login_register.css">
+	</head>
+  <body>
+    <ul id="hot-goods"></ul>
+  </body>
+  <script src="js/myajax.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+  var oGoods = document.querySelector('#hot-goods');
+  var page = 1;
+  myajax.get('http://h6.duchengjiu.top/shop/api_goods.php' ,{
+    page:1,
+    pagesize:10
+  },
+  function(err,responseText){
+    var json = JSON.parse(responseText);
+    var data = json.data;
+    console.log(data);
+    for(var i = 0; i<data.length;i++){
+      var obj = data[i];
+      oGoods.innerHTML += `<li class="hot-goods-box">
+        <a href="goods.html?goods_id=${obj.goods_id}">
+          <img src="${obj.goods_thumb}">
+          <i>¥${obj.price}</i>
+          <p>${obj.goods_name}</p>
+        </a>
+        <b class="hot-goods-layer">
+          <p>${obj.goods_desc}</p>
+          <i>¥${obj.price}</i>
+          <a href="">加入购物车</a>
+        </b>
+      </li>`;
+    }
+  })
+  </script>
+</html>

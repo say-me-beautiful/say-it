@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/orderHeader.css"/>
+		<link rel="stylesheet" type="text/css" href="css/cart.css"/>
+		
+	</head>
+	<body>
+	<div id="header-list">
+			<a href="index.html"><i class="homelog"></i>美丽说首页</a>
+			<div id="header-list-right">
+				<a href="login.html" name="login" class="login">登录</a>
+				<a href="register.html" name="register" class="register">注册</a>
+				<a href="#" name="username" class="username">liuzhaohuiemmmmmm</a>
+				<a href="javascript:localStorage.clear();location.reload()" class="logout">退出</a>
+				<a href="cart.html"><i class="cartlog"></i>购物车</a>
+				<a href="order.html"><i class="orderlog"></i>我的订单</a>
+			</div>
+		</div>
+		<div id="all-logo">
+			<div class="logo-left"></div>
+			<div class="logo-right">
+				<div><div class="shuzi">1</div>
+				<div id="chang1"></div>
+				<p style="margin-left: -6px;">购物车</p>
+				</div>
+				<div><div id="chang2"></div><div class="shuzi">2</div><div id="chang3"></div><p style="margin-left: -10px;">选择地址</p></div>
+				<div><div id="chang4"></div><div class="shuzi">3</div><div id="chang5"></div><p style="margin-left: -17px;">确认并支付</p></div>
+				<div><div id="chang6"></div><div  class="shuzi"style="margin-right: 0;">√</div><p>完成</p></div>
+			</div>
+		</div>
+		<div id="hiddle1" class="hiddle" style="display: none;">
+			<div class="hiddle-img"></div>
+			<dl>
+				<dt>您的购物车还是空的，赶快去挑选商品吧！</dt>
+				<dd>去看看大家都喜欢的<a href="list.html">最热</a></dd>
+				<dd>去看看正在折扣中的优品<a href="index.html">首页</a></dd>
+			</dl>
+		</div>
+		<div>
+		    <table id="yable">
+		      <tr>
+		        <td class="choose"><input type="checkbox" name="choose" class="checkbox" >全选</td>
+		        <td class="goods">商品</td>
+		        <td class="number">数量</td>
+		        <td class="price">单价(元)</td>
+		        <td class="sum">总价(元)</td>
+		        <td class="use">操作</td>
+		      </tr>
+		    </table>
+		    <div class="all"> <input type="checkbox" name="choose" class="checkbox" >
+		    <input type="button" id="clear-cart" value="清空购物车" disabled="disabled" >
+		    <span id="run">共有<span id="runa">0</span>件商品</span>总计：<span id="sum"><b>0</b></span>
+		    <button id="pay" style="background: #d8d8d8;border: none;" disabled >去付款</button>
+		    </div>
+		  </div>
+		  <div class="footer">
+		  	<p>美丽说 © 2016 Meilishuo.com,All Rights Reserved.</p>
+		  	<div class="png"></div>
+		  </div>
+		  <div id="hiddle2" style="display: none;">
+		  	<div class="smallhiddle2">
+		  	<div class="ku"><img src="img/kule.png" style="width:100px;height: 100px;"/></div>
+		  	<p style="font-size: 15px;line-height: 40px;margin-top: 30px;">真的要删除人家吗？</p>
+		  	<span class="yessi">是</span>
+		  	<span class="nosi">否</span>
+		  	</div>
+		  </div>
+		  <div id="hiddle3" style="display: none;">
+		  	<div class="smallhiddle2">
+		  	<div class="ku"><img src="img/kule.png" style="width:100px;height: 100px;"/></div>
+		  	<p style="font-size: 15px;line-height: 40px;margin-top: 30px;">真的要清空吗？</p>
+		  	<span class="yessa">是</span>
+		  	<span class="nosa">否</span>
+		  	</div>
+		  </div>
+  <script src="js/myajax.js" charset="utf-8"></script>
+  <script type="text/javascript">
+		if(localStorage.username){
+			var oUsername =  document.querySelector('a[name=username]');
+			var oLogout = document.querySelector('.logout');
+			oUsername.innerText = localStorage.username;
+			oUsername.style.display = 'inline';
+			oLogout.style.display = 'inline';
+		}else{
+			var oRegister = document.querySelector('.register');
+			var oLogin = document.querySelector('.login');
+			oRegister.style.display = 'inline';
+			oLogin.style.display = 'inline';
+		}
+  </script>
+  <script>
+  	var oPPP = document.getElementById('pay')
+  	var oLogoleft=document.querySelector('.logo-left');
+  	console.log(oLogoleft)
+  	oLogoleft.onclick=function(){
+  		location.href="index.html"
+  	}
+  	var oShuzi=document.querySelectorAll('.shuzi')
+  	oShuzi[0].style.backgroundColor="red";
+  	oShuzi[0].nextSibling.nextSibling.style.backgroundColor="red";
+  	oShuzi[0].nextSibling.nextSibling.nextSibling.nextSibling.style.color="red";
+    var oTable = document.querySelector('table');
+    
+    var oHiddle=document.querySelector('#hiddle1')
+    var oHiddle2=document.querySelector('#hiddle2')
+    var oHiddle3=document.querySelector('#hiddle3')
+    var oSum = document.querySelector('#sum');
+    var oYessi=document.querySelector('.yessi')
+    var oNosi=document.querySelector('.nosi')
+     var oYessa=document.querySelector('.yessa')
+    var oNosa=document.querySelector('.nosa')
+    myajax.get('http://h6.duchengjiu.top/shop/api_cart.php', {token: localStorage.token}, function(err, responseText){
+      var json = JSON.parse(responseText);
+      console.log(json);
+      var data = json.data;
+      for (var i = 0; i < data.length; i++) {
+        var obj = data[i];
+        //一件商品的总价
+        obj.goods_sum = obj.goods_price * obj.goods_number;
+        oTable.innerHTML += `
+                          <tr>
+                          	<td class="choose" name="goods_id" id="${obj.goods_id}"><input type="checkbox" name="choose" class="checkbox" ></td>
+                            <td class="goods"><div class="goods-img"><img src="${obj.goods_thumb}" ></div><div class="goods-name">${obj.goods_name}</div></td>
+                            <td class="number"><input data-id="${obj.goods_id}" type="number" name="number" min="1" max="10" value="${obj.goods_number}" /></td>
+                            <td class="price">${obj.goods_price}</td>
+                            <td class="suma" name="sum">${obj.goods_sum}</td>
+                            <td class="use"><input data-id="${obj.goods_id}" type="button" name="delete" value="删除" class="dele"></td>
+                          </tr>
+                          `;
+      }
+       (function(){
+    	var oTr=document.querySelectorAll('tr');
+    	if (oTr.length<2) {
+    		oHiddle.style.display="block";
+    	}else{
+    		oHiddle.style.display="none";
+    	}
+    	var  oCheckbox=document.querySelectorAll('input[name="choose"]')
+    	console.log(oCheckbox)
+    	
+    	oCheckbox[0].onclick=function(){
+    		
+    		if (oCheckbox[0].checked){
+    			for (var i=1;i<oCheckbox.length;i++) {
+    			oCheckbox[i].checked="true"}
+    			oClearCart.disabled=false;
+    		}else{
+    			for (var i=1;i<oCheckbox.length;i++) {
+    			oCheckbox[i].checked=false}
+    			oClearCart.disabled=true;
+    			}
+    		
+    	}
+    	
+    })()
+      getSum();
+    });
+    
+    oTable.onchange = function(event) {
+      event = event || window.event;
+      var target = event.target || event.srcElement;
+      if (target.name === 'number') {
+        //如果输入的内容不是数字，我们默认改成1
+        if (isNaN(parseInt(target.value))) {
+          target.value = 1;
+        }
+        console.log(parseInt(target.parentNode.nextElementSibling.innerText));
+        //得到商品的ID
+        var goods_id = target.dataset.id;
+        
+        //得到商品的数量
+        var number = target.value;
+        //请求api修改购买的商品数量
+        myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+        {goods_id, number},
+        function(err, responseText) {
+          var json = JSON.parse(responseText);
+          console.log(json);
+          if (json.code === 0) {
+            // alert('更新购物车成功');
+            //修改总价和小计
+            //得到当前商品的价格
+            var goods_price = parseInt(target.parentNode.nextElementSibling.innerText);
+            //修改单个商品的总价：数量 * 价格
+            target.parentNode.nextElementSibling.nextElementSibling.innerText = parseInt(target.value) * goods_price;
+            //显示总价
+            getSum();
+          }
+        })
+      }
+    }
+    oTable.addEventListener('click', function(event){
+      event = event || window.event;
+      var target = event.target || event.srcElement;
+      if (target.name === 'delete') {
+      	oHiddle2.style.display="block";
+        oYessi.onclick=function(){
+        	 var goods_id = target.dataset.id;
+        var number = 0;
+        myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+        {goods_id, number},
+        (err, responseText) => {
+          var json = JSON.parse(responseText);
+          console.log(json);
+          if (json.code === 0) {
+            var tr = target.parentNode.parentNode;
+            tr.parentNode.removeChild(tr);
+            getSum();
+          }
+        })
+        oHiddle2.style.display="none"
+        }
+       oNosi.onclick=function(){
+       	oHiddle2.style.display="none"
+       	return;
+       	
+       }
+      }
+     
+    });
+    var oClearCart = document.querySelector('#clear-cart');
+    console.log(oClearCart)
+    oClearCart.onclick = () => {
+    	oHiddle3.style.display="block";
+      //得到所有的商品ID
+      oYessa.onclick=function(){
+      var oGoodsIds = document.querySelectorAll('td[name="goods_id"]');
+      for (var i = 0; i < oGoodsIds.length; i++) {
+        var td = oGoodsIds[i];
+        var goods_id = parseInt(td.id);
+        var number = 0;
+        (function(td){
+          myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+          {goods_id, number},
+          (err, responseText) => {
+            var json = JSON.parse(responseText);
+            console.log(json);
+            if (json.code === 0) {
+              // alert('更新购物车成功');
+              //删除整个TR
+              var tr = td.parentNode;
+              tr.parentNode.removeChild(tr);
+              //显示总价
+              getSum();
+            }
+          });
+        })(td);
+      }
+      oHiddle3.style.display="none";
+      }
+      var  oCheckbox=document.querySelectorAll('input[name="choose"]');
+      oCheckbox[0].checked=false;
+      oCheckbox[oCheckbox.length-1].checked=false;
+      oNosa.onclick=function(){
+      	oHiddle3.style.display="none";
+      	return;
+      }
+    }
+	var oRun=document.querySelector('#run');
+	
+    //显示出总价
+    function getSum() {
+  		(function(){ var oSums = document.querySelectorAll('td[name=sum]');
+      var sum = 0;
+      for (var i = 0; i < oSums.length; i++) {
+      	if (oSums[i].parentNode.childNodes[1].childNodes[0].checked) {
+      		sum += parseInt(oSums[i].innerText);
+      	}
+      	
+        
+      }
+      localStorage.sum = sum;
+      oSum.innerText = "￥" + sum;})()
+     
+    }
+   
+    document.onchange=function(){
+    	getSum();
+    	var index=0;
+    	var oPay=document.querySelector('#pay');
+    	var  oCheckbox=document.querySelectorAll('input[name="choose"]');
+    	console.log(oCheckbox)
+    	var oRun=document.querySelector('#runa')
+    	if (oCheckbox[oCheckbox.length-1].checked) {
+    			oClearCart.disabled=false;
+    		}else{
+    			oClearCart.disabled=true;
+    		}
+    	for (var i=1;i<oCheckbox.length-1;i++) { 
+    		
+    		if(oCheckbox[i].checked){
+    			index+=1;
+    			console.log(index)
+    		}
+    		if(index!=0){
+    			oPay.style.background="red";
+    			oPay.style.color="white";
+    			oPPP.disabled=false;
+    			oPPP.style.cursor="pointer";
+    			
+    		}else{
+    			oPay.style.background="#d8d8d8";
+    			oPay.style.color="black"
+    		}
+    	}
+    	
+    	oRun.innerHTML=index;
+    }
+//  
+    oPPP.onclick = function() {
+    	var oCheckbox = document.querySelectorAll('input[name="choose"]')
+    	//    	if (taget.name) {
+    	//    		for (var i=1;i<oCheckbox.length-1;i++) {
+    	// 			if(!oCheckbox[i].checked){
+    	// 				var tr = oCheckbox[i].parentNode.parentNode;
+    	//            	tr.parentNode.removeChild(tr);
+    	// 			}
+    	// 		}
+    	// 		location.href = "order.html"
+    	//    	}
+    	var oGoodsIds = document.querySelectorAll('td[name="goods_id"]');
+    	for(var i = 0; i < oGoodsIds.length; i++) {
+    		for(var j = 1; j < oCheckbox.length - 1; j++) {
+    			if(!oCheckbox[j].checked) {
+    				var td = oGoodsIds[j-1];
+    				var goods_id = parseInt(td.id);
+    				var number = 0;
+    				myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token=' + localStorage.token, {
+    						goods_id,number},(err, responseText) => {
+    						var json = JSON.parse(responseText);
+    						console.log(json);
+
+    					});
+    			}
+    		}
+    	}
+			location.href="order.html"
+    	}
+    //  oPay.onclick=function(){
+// 	}
+   
+  </script>
+</body>
+</html>

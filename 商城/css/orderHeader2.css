@@ -1,0 +1,377 @@
+div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+#all-header{
+	width: 100%;
+	height: 30px;
+	background: #f8f8f8;
+}
+#header{
+	width: 1200px;
+	height: 30px;
+	margin: auto;
+	font-size: 12px;
+	line-height: 30px;
+}
+.header-left{
+	float: left;
+}
+.header-right{
+	float: right;
+}
+.header-right li{
+	float: left;
+	width: 110px;
+	height: 30px;
+	text-align: center;
+}
+#all-logo{
+	width: 100%;
+	background: #f4f4f4;
+	overflow: hidden;
+	border-bottom: 1px solid #ddd;
+}
+#logo{
+	width: 100%;
+	height: 65px;
+}
+.logo-left{
+	background: url(../img/170411_4j7i7db3l1k3l8a10aie8hdi7h9fc_288x78.png) no-repeat;
+	background-size: 144px 39px;
+	float: left;
+	width: 225px;
+	height: 65px;
+	margin: 14px 35px 0 35px;
+	
+}
+.logo-right{
+	float: right;
+	width: 494px;
+	height: 23px;
+	margin: 21px 0;
+	position: relative;
+}
+.logo-right p{
+	font-size: 10px;
+}
+.logo-right>div{
+	float: left;
+}
+#chang1,#chang2,#chang3,#chang4,#chang5,#chang6{
+	position: absolute;
+	width:60px;
+	height:5px;
+	background-color:#DDDDDD;
+	top: 11px;
+	left:23px;
+}
+#chang1{
+	left:23px;
+}
+#chang2{
+	left:83px;
+}
+#chang3{
+	left:166px;
+}
+#chang4{
+	left:226px;
+}
+#chang5{
+	left:309px;
+}
+#chang6{
+	left:369px;
+}
+#chang1,#chang2,#chang3{
+	background: red;
+}
+.shuzi{
+	width: 23px;
+	height: 23px;
+	border-radius: 50%;
+	margin-right:120px;
+	background-color: #dddddd;
+	color: white;
+	text-align: center;
+	line-height: 23px;
+}
+.show-all-address{
+	width: 80px;
+	height: 25px;
+	text-align: center;
+	line-height: 25px;
+}
+#deliveryAddress{
+	margin: auto;
+	width: 1200px;
+	height: 600px;
+}
+.address{
+	overflow: hidden;
+}
+.address-ul{
+	width: 1200px;
+	height: 150px;
+	overflow: hidden;
+}
+.address-ul li{
+	width: 300px;
+	height: 100px;
+	float: left;
+}
+.address-ul h2{
+	text-align: center;
+	width: 1200px;
+	height: 200px;
+	line-height: 150px;
+	font-size: 20px;
+}
+form {
+      padding-right: 150px;
+    }
+
+main{
+	width: 1200px;
+	height: 100%;
+	margin: auto;
+	margin-top: 30px;
+	background: white;
+	overflow: hidden;
+}
+.h1contain{
+	height: 50px;
+	overflow: hidden;
+}
+main h1{
+	font-size: 20px;
+	font-weight: bold;
+	margin: 20px 0 0 20px;
+	float: left;
+}
+
+#main-naa{
+	width: 100%;
+	background: #f4f4f4;
+	height: 100%;
+	overflow: hidden;
+}
+#add-address{
+	float: left;
+	margin: 17px;
+	background: white;
+	padding: 4px;
+	border: 1px solid white;
+	outline: none;
+}
+#add-address:hover{
+	border: 1px solid #F4F4F4;
+	background: pink;
+	cursor: pointer;
+}
+.address-top{
+	overflow: hidden;
+}
+.address-ul li{
+	width: 310px;
+	
+	height: 110px;
+	margin:20px 10px;
+	border: 3px dashed #F4F4F4;
+	border-radius: 10px;
+}
+.address-ul li:hover{
+	cursor: ;
+}
+.address-ul span{
+	display: inline-block;
+	height: 30px;
+	font-style: italic;
+	font-size: 17px;
+	line-height: 30px;
+	text-indent: 20px;
+}
+.address-ul .dizhi{
+	width: 96%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+body{
+	background: #f4f4f4;
+	position: relative;
+}
+#order{
+	margin: 20px;
+	background: #F4F4F4;
+	width: 60px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+}
+#order:hover{
+	background: orange;
+	color: white;
+	cursor: pointer;
+}
+#check_message{
+	font-size: 12px;
+	width: 1160px;
+	border-bottom: 1px solid #F4F4F4;
+	height: 50px;
+	line-height: 50px;
+	float: none;
+}
+#good_order_list{
+	border-bottom: 1px solid #F4F4F4;
+	height: 50px;
+	width: 1160px;
+	margin-left: 20px;
+}
+#good_order_list li{
+	height: 50px;
+	line-height: 50px;
+	float: left;
+}
+#check_order div{
+	width: 1160px;
+	margin:0 20px;
+	
+	height: 100px;
+	background: #f8f8f8;
+}
+#check_order img{
+	display: block;
+	float: left;
+	margin: 10px 10px;
+	width: 80px;
+	height: 80px;
+	vertical-align: middle;
+}
+#check_order span{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 0;
+	height: 100px;
+	display:block;
+	float: left;
+	line-height: 100px;
+}
+#describ{
+	width: 1160px;
+	height: 50px;
+	background: #F8F8F8;
+	margin: 0px 20px;
+}
+#describ span{
+	margin: 10px 10px;
+}
+#describ input{
+	width: 400px;
+	margin: 10px 0;
+}
+#describ .sumAll{
+	margin-left: 0px;
+}
+#describ .blank{
+	margin-left:530px ;
+}
+#toPay{
+	display: block;
+	float: right;
+	width: 150px;
+	height: 50px;
+	text-align: center;
+	text-decoration: none;
+	line-height: 50px;
+	background: pink;
+	color: black;
+	font-size: 20px;
+	margin-right: 20px;
+}
+#toPay:hover{
+	cursor: pointer;
+	background: green;
+}
+#back-to-cart{
+	display: block;
+	height: 50px;
+	width: 150px;
+	line-height: 50px;
+	text-align: center;
+	float: left;
+	text-decoration: none;
+}
+#back-to-cart:hover{
+	text-decoration: underline;
+}
+#gotopay{
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background:rgba(0,0,0,0.5);
+}
+.goto-container{
+	width: 400px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -65px 0 0 -200px;
+	height: 130px;
+	background: white;
+}
+.goto-container div{
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+.goto-container a{
+	display: inline-block;
+	width: 48%;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	
+}

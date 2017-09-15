@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/login_register.css">
+		<style>
+
+		</style>
+	</head>
+	<body>
+		<div id="register-header">
+			<a href="index.html"></a>
+		</div>
+		<div id="registerbg">
+			<div id="registerbox">
+				<div id="registertitle">
+						新用户注册
+				</div>
+				<div id="register">
+						<div class="login-section">
+							<span class="warning">
+								<i></i>
+							</span>
+							<input type="text" name="username" value="" autocomplete="off" class="username" placeholder="请输入用户名">
+			  			<input type="password" name="password" value="" class="password" placeholder="请输入密码">
+			  			<input type="submit" class="submit" value="立即注册">
+						</div>
+						<div class="agree">
+							<input type="checkbox" class="checkbox" checked>
+							我已经阅读并且同意
+							<a href="#">美丽说注册条款</a>
+						</div>
+						<div class="login-now">
+							<a href="login.html">已有账号登录>></a>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div id="layer">
+			<div id="layerbox">
+				<div class="layer-title">提示信息
+					<i class="close"></i>
+				</div>
+				<div class="layer-message">
+					<p>恭喜你，注册成功！</p>
+					<a href="login.html">去登录>></a>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div id="footer-nav">
+				<div id="footer-dl">
+					<dl style="margin-left:75px;">
+						<dt>卖家帮助</dt>
+						<dd><a href="#">新手指南</a></dd>
+						<dd><a href="#">服务保障</a></dd>
+						<dd><a href="#">常见问题</a></dd>
+						<dd><a href="#">风险监测</a></dd>
+					</dl>
+					<dl>
+						<dt>商家帮助</dt>
+						<dd><a href="#">供货商招募</a></dd>
+						<dd><a href="#">商家后台</a></dd>
+					</dl>
+					<dl>
+						<dt>关于我们</dt>
+						<dd><a href="#">关于美丽说</a></dd>
+						<dd><a href="#">联系我们</a></dd>
+					</dl>
+					<dl class="follow-us">
+						<dt>关注我们</dt>
+						<dd><a href="#"><i></i>新浪微博</a></dd>
+						<dd><a href="#"><i style="background-position:-28px 0;"></i>QQ空间</a></dd>
+						<dd><a href="#"><i style="background-position:-56px 0;"></i>腾讯微博</a></dd>
+					</dl>
+				</div>
+				<div id="footer-qr">
+					<div style="margin-left:136px;">
+						<h3>美丽说微信服务号</h3>
+						<img src='img/fuwu.jpg'>
+					</div>
+					<div>
+						<h3>美丽说客户端下载</h3>
+						<img src='img/app.png'>
+					</div>
+				</div>
+			</div>
+			<div id="footer-copy">
+				<p style="margin-top:10px;">Copyright ©2017 Meilishuo.com  电信与信息服务业务经营许可证100798号 经营性网站备案信息 </p>
+				<p>京ICP备11031139号  京公网安备110108006045   客服电话：4000-800-577  文明办网文明上网举报电话：010-82615762  违法不良信息举报中心</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/myajax.js" charset="utf-8"></script>
+	<script src="js/animate.js" charset="utf-8"></script>
+	<script>
+		var oUsername = document.querySelector('input[name=username]');
+		var oPassword = document.querySelector('input[name=password]');
+		var oSubmit = document.querySelector('input[type=submit]');
+		var oCheck = document.querySelector('.checkbox')
+		var oWarning = document.querySelector('.warning');
+		var oRegisterbox = document.querySelector('#registerbox');
+		console.log("1");
+		if(oCheck.checked){
+			oPassword.onkeyup = function(event){
+				if(event.keyCode === 13){
+					registerhtml();
+				}
+			}
+			oUsername.onkeyup = function(event){
+				if(event.keyCode === 13){
+					registerhtml();
+				}
+			}
+			oSubmit.onclick = registerhtml;
+		}
+		// else{
+		// 	oWarning.style.display = 'block';
+		// 	animate(oWarning,{"height":30},500,"Linear");
+		// 	animate(oWarning,{"marginTop":16},500,"Linear");
+		// 	animate(oRegisterbox,{"height":390},500,"Linear");
+		// 	oWarning.innerHTML=`<i></i><p>${"请勾选同意美丽说注册条款"}</p>`;
+		// }
+		 function registerhtml(){
+			myajax.post('http://h6.duchengjiu.top/shop/api_user.php',
+				{
+					status:'register',
+					username:oUsername.value,
+					password:oPassword.value
+				},function(error,responseText){
+					var json = JSON.parse(responseText);
+					console.log(json);
+					if(json.message === "密码最小长度为6位"){
+						oWarning.style.display = 'block';
+						animate(oWarning,{"height":30},500,"Linear");
+						animate(oWarning,{"marginTop":16},500,"Linear");
+						animate(oRegisterbox,{"height":400},500,"Linear");
+						oWarning.innerHTML=`<i></i><p>${json.message}</p>`;
+					}
+					if(json.message === "用户名已存在"){
+						oWarning.style.display = 'block';
+						animate(oWarning,{"height":30},500,"Linear");
+						animate(oWarning,{"marginTop":16},500,"Linear");
+						animate(oRegisterbox,{"height":400},500,"Linear");
+						oWarning.innerHTML=`<i></i><p>${json.message}</p>`;
+					}
+					if(json.message === "用户名不合法，请填写3-20位的英文数字下划线"){
+						oWarning.style.display = 'block';
+						animate(oWarning,{"height":30},500,"Linear");
+						animate(oWarning,{"marginTop":16},500,"Linear");
+						animate(oRegisterbox,{"height":400},500,"Linear");
+						oWarning.innerHTML=`<i></i><p>${json.message}</p>`;
+					}
+					if(json.message === "注册成功"){
+						oLayer.style.display = 'block';
+					}
+				});
+		}
+	</script>
+	<script>
+		var oClose = document.querySelector('.close');
+		var oLayer = document.querySelector('#layer')
+		oClose.onclick = function(){
+			oLayer.style.display = 'none';
+		}
+	</script>
+</html>

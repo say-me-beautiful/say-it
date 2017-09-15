@@ -1,0 +1,152 @@
+
+a{
+	text-decoration: none;
+}
+.Body{
+	width: 1200px;
+	overflow: hidden;
+	margin: 0 auto;
+	margin-top:20px;
+}
+.Body>div{
+	float: left;
+}
+.left-side{
+	width:110px;
+	padding: 30px;
+	background-color: #fafafa;
+	border: 1px solid #e5e5e5;
+	margin-right: 26px;
+	font-size: 12px;
+}
+.left-side dl{
+	margin-bottom: 20px;
+}
+.left-side dt{
+	font-weight: bold;
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+.left-side dt a{
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	font-size: 14px;
+	
+}
+.left-side dd{
+	margin-bottom: 15px;
+	
+}
+.left-side dd a{
+	color: #666666;
+	text-decoration: none;
+	
+}
+.left-side dd a:hover,.left-side dt a:hover{
+	color: #ff6699;
+}
+.right-side{
+	width:1000px;
+	background-color: white;
+}
+.right-side ul>li{
+	float: left;
+	list-style: none;
+}
+.right-side-header{
+	width: 100%;
+	height: 35px;
+	background-color: #fafafa;
+	line-height: 35px;
+}
+.right-side-header li{
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+.goods-head{
+	width: 1000px;
+	height:40px;
+	background-color: #fff7ea;
+	line-height: 40px;
+}
+.order-li{
+	border:1px solid #ffdb82;
+	margin-bottom: 20px;
+}
+.goods-body{
+	height:120px;
+	width:1000px;
+	font-size: 12px;
+	border-bottom: 1px solid #ececec;
+}
+.goods-body img{
+	width:80px;
+	height:80px;
+}
+.goods-body>div{
+	padding-top: 20px;
+	height: 100px;
+	float: left;
+	text-align: center;
+	line-height: 30px;
+}
+.goods-body-goods>div{
+	float: left;
+}
+.order-footer{
+	width:970px;
+	padding-left: 30px;
+	height:60px;
+	line-height: 60px;
+	font-size:14px;
+}
+.order-footer>div{
+	float: left;
+}
+.paybutton{
+	width:72px;
+	height:22px;
+	background-color: #ff3366;
+	border:none;
+	color:white;
+}
+#hiddle3,#hiddle2{
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	position: fixed;
+	background:rgba(250,239,210,0.5);
+	z-index:99;
+}
+.smallhiddle2{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	height:144px;
+	margin-left: -200px;
+	margin-top: -72px;
+	border-radius: 10px;
+	background-color: #f3d38e;
+	text-align: center;
+}
+.yessi,.nosi,.yessa,.nosa{
+	display: inline-block;
+	width: 60px;
+	height:40px;
+	border-radius: 20px;
+	border:none;
+	background-color: #f4ba3e;
+	line-height: 40px;
+	cursor: pointer;
+}
+.ku{
+	width: 100px;
+	height:100px;
+	position: absolute;
+	top:22px;
+	left: 20px;
+}
